@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 var commandLineArgs = require("command-line-args");
-var cli = commandLineArgs([
+var options = commandLineArgs([
   {name: 'port', alias: 'p', type: Number, defaultValue: 8765},
   {name: 'target', alias: 't', type: String, defaultOption: true}
 ]);
-var options = cli.parse();
 var usage;
 
 function runServer(target, port){
@@ -27,10 +26,25 @@ function runServer(target, port){
 
 if(!options.target){
 
-  var usage = cli.getUsage({
-      title: "Reverse Proxy",
-      description: "Useful during development on a test server needing to communicate with APIs having restrictive CORS settings."
-  });
+  var usage = require('command-line-usage')([
+    {
+      header: 'Reverse Proxy',
+      content: 'Useful during development on a test server needing to communicate with APIs having restrictive CORS settings.'
+    },
+    {
+      header: 'Options',
+      optionList: [
+        {
+          name: 'target',
+          description: 'Target server base url.'
+        },
+        {
+          name: 'port',
+          description: 'Target server port (default 8765).'
+        }
+      ]
+    }
+  ]);
 
   console.log(usage);
 }else{

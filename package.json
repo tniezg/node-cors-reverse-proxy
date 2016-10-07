@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "main": "server.js",
   "dependencies": {
-    "command-line-args": "^1.0.0",
+    "command-line-args": "^3.0.1",
+    "command-line-usage": "^3.0.3",
     "connect": "^3.4.0",
     "cors": "^2.7.1",
     "http-proxy": "^1.11.1",
