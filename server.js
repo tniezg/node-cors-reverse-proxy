@@ -18,7 +18,10 @@ function runServer(target, port){
   var logger = require('morgan');
 
   app.use(logger('dev'));
-  app.use(cors());
+  app.use(cors({
+    origin: true,
+    credentials: true
+  }));
 
   app.use('/', proxyFunc);
   app.listen(port);
